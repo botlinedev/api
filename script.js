@@ -1,6 +1,7 @@
+let userId = '';
 liff.init(data => {
     console.log("LIFF API was Called ")
-    const userId = data.context.userId;
+    userId = data.context.userId;
   },
   err => {
     console.log("LIFF initialization failed")
@@ -14,6 +15,18 @@ function sendFlex() {
   if (text !== '') {
     console.log('has text')
     message = text;
+    liff.sendMessages([
+      {
+        type: 'text',
+        text: message
+      }
+    ])
+    .then(() => {
+      console.log('message sent');
+    })
+    .catch((err) => {
+      console.log('error', err);
+    });
   }
   if (image !== '') {
     console.log('has image')
@@ -23,7 +36,7 @@ function sendFlex() {
     console.log('has url')
     message = image + ' ' + url + ' ' + text;
   }
-  body = { "to": "U47776c2cab6edb0d632c2ed21b3ea6b8", "message": message };
+  body = { "to": "1", "message": message };
   $.ajax({
       type: 'POST',
       data: JSON.stringify(body),
@@ -33,6 +46,7 @@ function sendFlex() {
       success: function(body) {
           console.log('success');
           console.log(JSON.stringify(body));
+          liff.closeWindow();
       }
   });
 }
