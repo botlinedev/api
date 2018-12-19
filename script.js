@@ -40,18 +40,7 @@ function sendFlex() {
   $("#image").val("");
   $("#url").val("");
   $("#text").val("");
-  $.ajax({
-      type: 'POST',
-      data: JSON.stringify(body),
-      dataType: "json",
-      contentType: 'application/json',
-      url: 'https://razerforce.herokuapp.com/push',	
-      success: function(body) {
-          console.log('success');
-          console.log(JSON.stringify(body));
-          liff.closeWindow();
-      }
-  });
+  liff.closeWindow();
 }
 function loginBot() {
   liff.openWindow({
