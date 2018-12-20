@@ -9,10 +9,6 @@ liff.init(data => {
     console.log("LIFF initialization failed")
   }
 );
-liff.getProfile().then(function (user) {
-  $("#displayName").html(user.displayName);
-  $(".profile").attr("src", user.picturUrl);
-}
 function send(data) {
   liff.sendMessages([ data ])
   .then(() => {
