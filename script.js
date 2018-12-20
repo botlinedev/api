@@ -1,16 +1,16 @@
 window.onload = function (e) {
     liff.init(data => {
         console.log("LIFF API was Called ")
+        liff.getProfile().then(function (user) {
+          $("#displayName").html(user.displayName);
+          $(".profile").attr("src", user.picturUrl);
+        }
     }, err => {
         $("#displayName").html("Username");
         $(".profile").attr("src","https://i.imgur.com/ObBOmmq.png");
         console.log("LIFF initialization failed")
       }
     );
-    liff.getProfile().then(function (user) {
-      $("#displayName").html(user.displayName);
-      $(".profile").attr("src", user.picturUrl);
-    }
 };
 
 function send(data) {
