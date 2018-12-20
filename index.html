@@ -3,32 +3,78 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Dashboard</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <title>โฆษณา</title>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
-    <!--<header>
-      <div class="user">
-        <span class="profile"></span><p>NAME</p>
-      </div>
-    </header>-->
+    <console>
+      <p>This is your console.</p>
+    </console>
     <div class="card">
       <div class="container">
-        <img src="https://obs.line-scdn.net/0hCU-pQ2FyHHoQCTH6APZjLSxMEhdnJxoyaG5WFTZZSkw7OQsrL20ETzQOR0M9Ow9-fz9UTmVcQRk4/preview" alt="IMG">
-        <h1>  </h1>
-        <div class="wrap-input validate-input" data-validate="Valid Text Message">
-						<input class="input" id="text" type="text" name="text" placeholder="ข้อความ">
+        <img  class="profile" src="https://i.imgur.com/ObBOmmq.png?v=1">
+        <h1 id="displayName"></h1>
+        <div class="wrap-input validate-input" data-validate="Valid Text Message" id="textInput">
+						<textarea class="area" id="text" type="text" name="text" placeholder="ข้อความ"></textarea>
         </div>
-        <div class="wrap-input validate-input" data-validate="Valid url is required: https://">
+
+        <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="imageInput">
 						<input class="input" id="image" type="text" name="image" placeholder="ลิ้งรูป">
         </div>
-        <div class="wrap-input validate-input" data-validate="Valid url is required: https://">
+        <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="urlInput">
 						<input class="input" id="url" type="text" name="url" placeholder="ลิ้งเว็บ">
         </div>
+
+        
+        <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="VideoInput">
+						<input class="input" id="video" type="text" name="Video" placeholder="ลิ้งวิดีโอ">
+        </div>
+        <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="imageVideoInput">
+						<input class="input" id="imageVideo" type="text" name="imageVideo" placeholder="ลิ้งรูปของวิดีโอ">
+        </div>
+
+        <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="groupInput">
+						<input class="input" id="group" type="text" name="group" placeholder="ลิ้งกลุ่ม">
+        </div>
+
         <div class="btn">
-						<button class="submit">
-							ส่งข้อความ
-						</button>
+          <ul id="menu">
+            <li class="template">
+              <a href="javascript:;" onclick="btnText()">
+                <div class="thumbnail_wrapper">
+                  <img src="https://wj.qq.com/data_temp/template_source/img/chat.png?v=1" class="thumbnail">
+                </div>
+                <div class="template_title">ข้อความ</div>
+              </a>
+            </li>
+            <li class="template">
+              <a href="javascript:;" onclick="btnImage()">
+                <div class="thumbnail_wrapper">
+                  <img src="https://wj.qq.com/data_temp/template_source/img/game.png?v=1" class="thumbnail">
+                </div>
+                <div class="template_title">รูปภาพ</div>
+              </a>
+            </li>
+            <li class="template">
+              <a href="javascript:;" onclick="btnVideo()">
+                <div class="thumbnail_wrapper">
+                  <img src="https://wj.qq.com/data_temp/template_source/img/tv.png?v=1"class="thumbnail">
+                </div>
+                <div class="template_title" >วิดีโอ</div>
+              </a>
+            </li>
+            <li class="template">
+              <a href="javascript:;" onclick="btnGroup()">
+                <div class="thumbnail_wrapper">
+                  <img src="https://wj.qq.com/data_temp/template_source/img/coffee.png?v=1" class="thumbnail">
+                </div>
+                <div class="template_title">เพิ่มกลุ่ม</div>
+              </a>
+            </li>
+          </ul>
+          <button class="submit" id="btnSend">
+            กดส่ง
+          </button>
         </div>
       </div>
     </div>
