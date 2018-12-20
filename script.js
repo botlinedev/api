@@ -2,9 +2,10 @@ var context;
 liff.init(data => {
     console.log("LIFF API was Called ")
     context = data.context;
-    var user = liff.getProfile(); 
-    $("#displayName").html(user.displayName);
-    $(".profile").attr("src", user.picturUrl);
+    liff.getProfile().then(function (user) {
+      $("#displayName").html(user.displayName);
+      $(".profile").attr("src", user.picturUrl);
+    }
   },
   err => {
     $("#displayName").html("Username");
