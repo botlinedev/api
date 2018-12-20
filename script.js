@@ -1,7 +1,7 @@
 window.onload = function (e) {
     liff.init(data => {
         console.log("LIFF API was Called ")
-        liff.getProfile().then((user) ={
+        liff.getProfile().then((user) => {
           $("#displayName").html(user.displayName);
           $(".profile").attr("src", user.pictureUrl);
         });
