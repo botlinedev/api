@@ -1,46 +1,159 @@
-let userId = '';
+var context;
 liff.init(data => {
     console.log("LIFF API was Called ")
-    userId = data.context.userId;
+    context = data.context;
+    var user = liff.getProfile(); 
+    $("#displayName").html(user.displayName);
+    $(".profile").attr("src", user.picturUrl);
   },
   err => {
+    $("#displayName").html("Username");
+    $(".profile").attr("src","https://obs.line-scdn.net/0hCU-pQ2FyHHoQCTH6APZjLSxMEhdnJxoyaG5WFTZZSkw7OQsrL20ETzQOR0M9Ow9-fz9UTmVcQRk4/preview");
     console.log("LIFF initialization failed")
   }
 );
+function send(data) {
+  liff.sendMessages([ data ])
+  .then(() => {
+      console.log('message sent');
+      liff.closeWindow();
+  })
+  .catch((err) => {
+      console.log('error', err);
+      liff.closeWindow();
+  });
+}
 function sendFlex() {
   message = '';
   image = $("#image").val();
   url = $("#url").val();
   text = $("#text").val();
-  if (text !== '') {
-    console.log('has text')
-    message = text;
-    liff.sendMessages([
-      {
-        type: 'text',
-        text: message
-      }
-    ])
-    .then(() => {
-      console.log('message sent');
-    })
-    .catch((err) => {
-      console.log('error', err);
-    });
-  }
-  if (image !== '') {
-    console.log('has image')
-    message = image + ' ' + image + ' ' + text;
-  }
-  if (url !== '') {
-    console.log('has url')
-    message = image + ' ' + url + ' ' + text;
-  }
-  body = { "to": "1", "message": message };
+  video = $("#video").val();
+  imageVideo =  $("#imageVideo").val();
+  group = $("#group").val();
+  image = image.replace(" ","");
+  url = url.replace(" ","");
   $("#image").val("");
   $("#url").val("");
   $("#text").val("");
-  liff.closeWindow();
+  $("#video").val("");
+  $("#imageVideo").val("");
+  $("#group").val("");
+  if (text !== '') {
+    console.log('has text')
+    message = '>Text ' + text;
+    log(message);
+    send({ type: 'text', text: message })
+  }
+  if (image !== '' && url == '') {
+    console.log('has image')
+    message = '>Image ' + image + ' ' + image;
+    log(message);
+    send({ type: 'text', text: message })
+  }
+  if (image !== '' && url !== '') {
+    console.log('has url')
+    message = '>Image ' + image + ' ' + url;
+    log(message);
+    send({ type: 'text', text: message })
+  }
+  if (video !== '' && imageVideo !== ''){
+    console.log('has video')
+    message = '>Video ' + video + ' ' + imageVideo;
+    log(message);
+    send({ type: 'text', text: message })
+  }
+  if (group !== ''){
+    console.log('has video')
+    message = group;
+    log(message);
+    send({ type: 'text', text: message })
+  }
+}
+function log(message) {
+  $( "console" ).append( "<p>"+message+"</p>" );
+}
+function btnText() {
+  closeMenu(true);
+  closeBtn(false);
+  addText(true);
+  addImage(false);
+  addVideo(false);
+  addGroup(false);
+}
+function btnImage() {
+  closeMenu(true);
+  closeBtn(false);
+  addText(false);
+  addImage(true);
+  addVideo(false);
+  addGroup(false);
+}
+function btnVideo() {
+  closeMenu(true);
+  closeBtn(false);
+  addText(false);
+  addImage(false);
+  addVideo(true);
+  addGroup(false);
+}
+function btnGroup() {
+  closeMenu(true);
+  closeBtn(false);
+  addText(false);
+  addImage(false);
+  addVideo(false);
+  addGroup(true);
+}
+function btnAll() {
+  addText(false);
+  addImage(false);
+  addVideo(false);
+  addGroup(false);
+}
+function addText(check) {
+  if(check) {
+    $('#textInput').css("display","block");
+  } else {
+    $('#textInput').css("display","none");
+  }
+}
+function addImage(check) {
+  if(check) {
+    $('#imageInput').css("display","block");
+    $('#urlInput').css("display","block");
+  } else {
+    $('#imageInput').css("display","none");
+    $('#urlInput').css("display","none");
+  }
+}
+function addVideo(check) {
+  if(check) {
+    $('#imageVideoInput').css("display","block");
+    $('#VideoInput').css("display","block");
+  } else {
+    $('#imageVideoInput').css("display","none");
+    $('#VideoInput').css("display","none");
+  }
+}
+function addGroup(check) {
+  if(check) {
+    $('#groupInput').css("display","block");
+  } else {
+    $('#groupInput').css("display","none");
+  }
+}
+function closeBtn(check) {
+  if (check)
+    $('#btnSend').css("display","none");
+  else
+    $('#btnSend').css("display","block");
+}
+function closeMenu(check) {
+  if (check)
+    $('#menu').css("display","none");
+  else
+    $('#menu').css("display","flex");
 }
 function loginBot() {
   liff.openWindow({
@@ -62,7 +175,17 @@ function Profile() {
     return console.log('error', err);
   });
 }
+$('.profile').click(() => {
+  closeMenu(false);
+  closeBtn(true);
+  btnAll();
+});
 $('.submit').click(() => {
   console.log("Hi");
   sendFlex();
 });
+$('#text').on('keypress', function (e) {
+  if(e.which === 13){
+    sendFlex();
+  }
+})
