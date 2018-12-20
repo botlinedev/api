@@ -1,14 +1,18 @@
-var context;
-liff.init(data => {
-    console.log("LIFF API was Called ")
-    context = data.context;
-  },
-  err => {
-    $("#displayName").html("Username");
-    $(".profile").attr("src","https://obs.line-scdn.net/0hCU-pQ2FyHHoQCTH6APZjLSxMEhdnJxoyaG5WFTZZSkw7OQsrL20ETzQOR0M9Ow9-fz9UTmVcQRk4/preview");
-    console.log("LIFF initialization failed")
-  }
-);
+window.onload = function (e) {
+    liff.init(data => {
+        console.log("LIFF API was Called ")
+    }, err => {
+        $("#displayName").html("Username");
+        $(".profile").attr("src","https://i.imgur.com/ObBOmmq.png");
+        console.log("LIFF initialization failed")
+      }
+    );
+    liff.getProfile().then(function (user) {
+      $("#displayName").html(user.displayName);
+      $(".profile").attr("src", user.picturUrl);
+    }
+};
+
 function send(data) {
   liff.sendMessages([ data ])
   .then(() => {
