@@ -3,7 +3,7 @@ window.onload = function (e) {
         console.log("LIFF API was Called ")
         liff.getProfile().then((user) ={
           $("#displayName").html(user.displayName);
-          $(".profile").attr("src", user.picturUrl);
+          $(".profile").attr("src", user.pictureUrl);
         });
     }, err => {
         $("#displayName").html("Username");
