@@ -112,55 +112,5 @@
     <script src='https://code.jquery.com/jquery-2.2.4.min.js?v=1'></script>
     <script src="https://d.line-scdn.net/liff/1.0/sdk.js?v=1"></script>
     <script src="script.js"></script>
-    <script>
-	$("document").ready(function() {
-
-	  $('input[type=file]').on("change", function() {
-
-	    var $files = $(this).get(0).files;
-	      $("#image").val("กำลังอัพโหลดรูป...");
-
-	    if ($files.length) {
-
-	      if ($files[0].size > $(this).data("max-size") * 1040) {
-		console.log("รูปภาพใหญ่เกินไป");
-	        $("#image").val("รูปภาพใหญ่เกินไป");
-		return false;
-	      }
-
-	      console.log("กำลังอัพโหลดรูป");
-
-	      var apiUrl = 'https://api.imgur.com/3/image';
-	      var apiKey = '43905ab7492a794';
-
-	      var settings = {
-		async: false,
-		crossDomain: true,
-		processData: false,
-		contentType: false,
-		type: 'POST',
-		url: apiUrl,
-		headers: {
-		  Authorization: 'Client-ID ' + apiKey,
-		  Accept: 'application/json'
-		},
-		mimeType: 'multipart/form-data'
-	      };
-
-	      var formData = new FormData();
-	      formData.append("image", $files[0]);
-	      settings.data = formData;
-			
-	      $.ajax(settings).done(function(response) {
-		console.log(response);
-                let link = JSON.parse(response).data.link;
-		$("#imgururl").attr("src", link);
-	        $("#image").val(link);
-	      });
-
-	    }
-	  });
-	});
-    </script>
   </body>
 </html>
