@@ -6,6 +6,9 @@
     <title>MENU | เมนู</title>
     <link href="style.css" rel="stylesheet" type="text/css"/>
 	<style>
+		#imgur {
+	margin-bottom: 50px;
+		}
 		.imgur {
   color: transparent;
     background: url(https://i.imgur.com/ZAOasOH.jpg);
@@ -37,29 +40,29 @@
       <div class="container">
         <img  class="profile" src="https://i.imgur.com/ObBOmmq.png?v=1">
         <div class="wrap-input validate-input" data-validate="Valid Text Message" id="textInput">
-						<textarea class="area" id="text" type="text" name="text" placeholder="ข้อความ"></textarea>
+		<textarea class="area" id="text" type="text" name="text" placeholder="ข้อความ"></textarea>
         </div>
 
         <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="imageInput">
 		<form id="imgur">
+		  <img id="imgururl" style="width:100%">
 		  <input type="file" class="imgur" accept="image/*" data-max-size="5000"/>
 		</form>
-						<input class="input" id="image" type="text" name="image" placeholder="ลิ้งรูป">
+		<input class="input" id="image" type="text" name="image" placeholder="ลิ้งรูป">
         </div>
         <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="urlInput">
-						<input class="input" id="url" type="text" name="url" placeholder="ลิ้งเว็บ">
+		<input class="input" id="url" type="text" name="url" placeholder="ลิ้งเว็บ">
         </div>
-
         
         <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="VideoInput">
-						<input class="input" id="video" type="text" name="Video" placeholder="ลิ้งวิดีโอ">
+		<input class="input" id="video" type="text" name="Video" placeholder="ลิ้งวิดีโอ">
         </div>
         <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="imageVideoInput">
-						<input class="input" id="imageVideo" type="text" name="imageVideo" placeholder="ลิ้งรูปของวิดีโอ">
+		<input class="input" id="imageVideo" type="text" name="imageVideo" placeholder="ลิ้งรูปของวิดีโอ">
         </div>
 
         <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="groupInput">
-						<input class="input" id="group" type="text" name="group" placeholder="ลิ้งกลุ่ม">
+		<input class="input" id="group" type="text" name="group" placeholder="ลิ้งกลุ่ม">
         </div>
 
         <div class="btn">
@@ -145,6 +148,8 @@
 
 	      $.ajax(settings).done(function(response) {
 		console.log(response);
+		$('#imgururl').attr('src', response.data.link);
+		$('#image').val(response.data.link);
 	      });
 
 	    }
