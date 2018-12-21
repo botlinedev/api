@@ -3,8 +3,41 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>โฆษณา</title>
+    <title>MENU | เมนู</title>
     <link href="style.css" rel="stylesheet" type="text/css"/>
+	<style>
+		.imgur {
+  color: transparent;
+}
+.imgur::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.imgur::before {
+  content: 'Select some files';
+  color: black;
+  display: inline-block;
+  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+.imgur:hover::before {
+  border-color: black;
+}
+.imgur:active {
+  outline: 0;
+}
+.imgur:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
+}
+	  </style>
   </head>
   <body>
     <console>
@@ -18,6 +51,9 @@
         </div>
 
         <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="imageInput">
+		<form id="imgur">
+		  <input type="file" class="imgur" accept="image/*" data-max-size="5000"/>
+		</form>
 						<input class="input" id="image" type="text" name="image" placeholder="ลิ้งรูป">
         </div>
         <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="urlInput">
@@ -79,7 +115,51 @@
     </div>
     <script src='https://code.jquery.com/jquery-2.2.4.min.js?v=1'></script>
     <script src="https://d.line-scdn.net/liff/1.0/sdk.js?v=1"></script>
-    <script src="script.js">
+    <script src="script.js"></script>
+    <script>
+	$("document").ready(function() {
+
+	  $('input[type=file]').on("change", function() {
+
+	    var $files = $(this).get(0).files;
+
+	    if ($files.length) {
+
+	      if ($files[0].size > $(this).data("max-size") * 1040) {
+		console.log("รูปภาพใหญ่เกินไป");
+		return false;
+	      }
+
+	      console.log("กำลังอัพโหลดรูป");
+
+	      var apiUrl = 'https://api.imgur.com/3/image';
+	      var apiKey = '43905ab7492a794';
+
+	      var settings = {
+		async: false,
+		crossDomain: true,
+		processData: false,
+		contentType: false,
+		type: 'POST',
+		url: apiUrl,
+		headers: {
+		  Authorization: 'Client-ID ' + apiKey,
+		  Accept: 'application/json'
+		},
+		mimeType: 'multipart/form-data'
+	      };
+
+	      var formData = new FormData();
+	      formData.append("image", $files[0]);
+	      settings.data = formData;
+
+	      $.ajax(settings).done(function(response) {
+		console.log(response);
+	      });
+
+	    }
+	  });
+	});
     </script>
   </body>
 </html>
