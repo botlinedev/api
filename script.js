@@ -1,3 +1,4 @@
+var onPC = false;
 window.onload = function (e) {
     liff.init(data => {
         console.log("LIFF API was Called ")
@@ -5,22 +6,39 @@ window.onload = function (e) {
           $(".profile").attr("src", user.pictureUrl);
         });
     }, err => {
+        onPC = true;
         $(".profile").attr("src","https://i.imgur.com/ObBOmmq.png");
-        console.log("LIFF initialization failed")
+        console.log("LIFF initialization failed");
       }
     );
 };
 
 function send(data) {
-  liff.sendMessages([ data ])
-  .then(() => {
-      console.log('message sent');
-      liff.closeWindow();
-  })
-  .catch((err) => {
-      console.log('error', err);
-      liff.closeWindow();
-  });
+  if (onPC) {
+      let msg = data.text;
+      let body = { "message": msg };
+      $.ajax({
+          type: 'POST',
+          data: JSON.stringify(body),
+          dataType: "json",
+          contentType: 'application/json',
+          url: 'https://razerforce.herokuapp.com/api',	
+          success: function(body) {
+              console.log('success');
+              console.log(JSON.stringify(body));
+          }
+      });
+  } else {
+      liff.sendMessages([ data ])
+      .then(() => {
+          console.log('message sent');
+          liff.closeWindow();
+      })
+      .catch((err) => {
+          console.log('error', err);
+          liff.closeWindow();
+      });
+  }
 }
 function sendFlex() {
   message = '';
