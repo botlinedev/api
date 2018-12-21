@@ -118,6 +118,7 @@
 	  $('input[type=file]').on("change", function() {
 
 	    var $files = $(this).get(0).files;
+	      $("#image").val("กำลังอัพโหลดรูป");
 
 	    if ($files.length) {
 
@@ -128,7 +129,6 @@
 	      }
 
 	      console.log("กำลังอัพโหลดรูป");
-	      $("#image").val("กำลังอัพโหลดรูป");
 
 	      var apiUrl = 'https://api.imgur.com/3/image';
 	      var apiKey = '43905ab7492a794';
