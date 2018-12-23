@@ -216,6 +216,9 @@ textarea {
     background-color: #f8f8f8;
     font-size: 16px;
     resize: none;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 }
 #textInput {
     display: none;
@@ -289,11 +292,9 @@ textarea {
     position: relative;
 	margin-bottom: 7px;
 }
-
 #imgur:hover img {
     opacity: 0.9;
 }
-  
 #imgur:hover input {
     opacity: 1;
 }
