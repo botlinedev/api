@@ -15,7 +15,7 @@ window.onload = function (e) {
 function send(data) {
   if (onPC) {
     let msg = data.text;
-    let body = { "message": msg };
+    let body = { "to": "C931d5bad909c23ce62345fb7d5c0faa0", "message": msg };
     $.ajax({
         type: 'POST',
         data: JSON.stringify(body),
