@@ -49,12 +49,7 @@ function sendFlex() {
   time = $("#datetime").val();
   image = image.replace(" ","");
   url = url.replace(" ","");
-  $("#image").val("");
-  $("#url").val("");
-  $("#text").val("");
-  $("#video").val("");
-  $("#imageVideo").val("");
-  $("#datetime").val("");
+  clean();
   if (time !== '' && text !== '') {
     message = '>AutoText ' + text + '[[TIME]]' + time;
     log(message);
@@ -149,9 +144,18 @@ function btnAll() {
   addGroup(false);
   addAuto(false);
   setTitle("เมนู");
+  clean();
 }
 function setTitle(name){
   document.title = "MENU | " + name;
+}
+function clean() {
+  $("#image").val("");
+  $("#url").val("");
+  $("#text").val("");
+  $("#video").val("");
+  $("#imageVideo").val("");
+  $("#datetime").val("");
 }
 function addText(check) {
   if(check) {
