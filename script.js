@@ -144,7 +144,6 @@ function btnAll() {
   addGroup(false);
   addAuto(false);
   setTitle("เมนู");
-  clean();
 }
 function setTitle(name){
   document.title = "MENU | " + name;
@@ -233,6 +232,7 @@ function Profile() {
   });
 }
 $('.profile').click(() => {
+  clean();
   closeMenu(false);
   closeBtn(true);
   btnAll();
