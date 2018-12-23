@@ -5,83 +5,106 @@
     <meta name="viewport" content="width=device-width">
     <title>MENU | เมนู</title>
     <link href="style.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
   </head>
   <body>
-    <console>
-      <p>This is your console.</p>
-    </console>
+    <console><p>This is your console.</p></console>
     <div class="card">
       <div class="container">
-        <img  class="profile" src="https://i.imgur.com/ObBOmmq.png?v=1">
-        <div class="wrap-input validate-input" data-validate="Valid Text Message" id="textInput">
-		<textarea class="area" id="text" type="text" name="text" placeholder="ข้อความ"></textarea>
+        <div class="me"><img  class="profile" src="https://i.imgur.com/ObBOmmq.png?v=1"/></div>
+        <form id="imgur">
+          <img id="imgururl" style="width:100%">
+          <input type="file" class="imgur" accept="image/*" data-max-size="5000"/>
+        </form>
+        <div class="wrap-input" id="textInput">
+          <p>เขียนข้อความ</p>
+		      <textarea class="area" id="text" type="text" name="text" placeholder="ข้อความ"></textarea>
         </div>
-
-        <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="imageInput">
-		<form id="imgur">
-		  <img id="imgururl" style="width:100%">
-		  <input type="file" class="imgur" accept="image/*" data-max-size="5000"/>
-		</form>
-		<input class="input" id="image" type="text" name="image" placeholder="ลิ้งรูป">
+        <div class="wrap-input" id="imageInput">
+          <p>รูปภาพ</p>
+		      <input class="input" id="image" type="text" name="image" placeholder="ลิ้งรูป">
         </div>
-        <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="urlInput">
-		<input class="input" id="url" type="text" name="url" placeholder="ลิ้งเว็บ">
+        <div class="wrap-input" id="urlInput">
+          <p>เว็บไซต์</p>
+		      <input class="input" id="url" type="text" name="url" placeholder="ลิ้งเว็บ">
         </div>
-        
-        <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="VideoInput">
-		<input class="input" id="video" type="text" name="Video" placeholder="ลิ้งวิดีโอ">
+        <div class="wrap-input" id="VideoInput">
+          <p>วิดีโอ</p>
+		      <input class="input" id="video" type="text" name="Video" placeholder="ลิ้งวิดีโอ">
         </div>
-        <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="imageVideoInput">
-		<input class="input" id="imageVideo" type="text" name="imageVideo" placeholder="ลิ้งรูปของวิดีโอ">
+        <div class="wrap-input" id="imageVideoInput">
+          <p>รูปตัวอย่างของวิดีโอ</p>
+		      <input class="input" id="imageVideo" type="text" name="imageVideo" placeholder="ลิ้งรูปของวิดีโอ">
         </div>
-
-        <div class="wrap-input validate-input" data-validate="Valid url is required: https://" id="groupInput">
-		<input class="input" id="group" type="text" name="group" placeholder="ลิ้งกลุ่ม">
+        <div class="wrap-input" id="autoMsg">
+          <p>ตั้งเวลา</p>
+            <div class="date">
+              <input class="input form-control" id="datetimepicker4" type="text" name="Time" placeholder="คลิ๊กเพื่อตั้งเวลา">
+            </div>
         </div>
-
+        <div class="wrap-input" id="groupInput">
+          <ul class="menu">
+              <li>
+                <a href="javascript:;" onclick="btnText2()">
+                  <div class="thumbnail_wrapper">
+                    <img src="./chat.png?v=1" class="thumbnail">
+                  </div>
+                  <div class="title">ออโต้ส่งข้อความ</div>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;" onclick="btnImage2()">
+                  <div class="thumbnail_wrapper">
+                    <img src="./game.png?v=1" class="thumbnail">
+                  </div>
+                  <div class="title">ออโต้ส่งรูปภาพ</div>
+                </a>
+              </li>
+          </ul>
+        </div>
         <div class="btn">
-          <ul id="menu">
-            <li class="template">
+          <ul class="menu" id="menu">
+            <li>
               <a href="javascript:;" onclick="btnText()">
                 <div class="thumbnail_wrapper">
-                  <img src="https://wj.qq.com/data_temp/template_source/img/chat.png?v=1" class="thumbnail">
+                  <img src="./chat.png?v=1" class="thumbnail">
                 </div>
-                <div class="template_title">ข้อความ</div>
+                <div class="title">ข้อความ</div>
               </a>
             </li>
-            <li class="template">
+            <li>
               <a href="javascript:;" onclick="btnImage()">
                 <div class="thumbnail_wrapper">
-                  <img src="https://wj.qq.com/data_temp/template_source/img/game.png?v=1" class="thumbnail">
+                  <img src="./game.png?v=1" class="thumbnail">
                 </div>
-                <div class="template_title">รูปภาพ</div>
+                <div class="title">รูปภาพ</div>
               </a>
             </li>
-            <li class="template">
+            <li>
               <a href="javascript:;" onclick="btnVideo()">
                 <div class="thumbnail_wrapper">
-                  <img src="https://wj.qq.com/data_temp/template_source/img/tv.png?v=1"class="thumbnail">
+                  <img src="./tv.png?v=1"class="thumbnail">
                 </div>
-                <div class="template_title" >วิดีโอ</div>
+                <div class="title">วิดีโอ</div>
               </a>
             </li>
-            <li class="template">
+            <li>
               <a href="javascript:;" onclick="btnGroup()">
                 <div class="thumbnail_wrapper">
-                  <img src="https://wj.qq.com/data_temp/template_source/img/coffee.png?v=1" class="thumbnail">
+                  <img src="./coffee.png?v=1" class="thumbnail">
                 </div>
-                <div class="template_title">เพิ่มกลุ่ม</div>
+                <div class="title">ออโต้</div>
               </a>
             </li>
           </ul>
-          <button class="submit" id="btnSend">
-            กดส่ง
-          </button>
+          <button class="submit" id="btnSend">กดส่ง</button>
         </div>
       </div>
     </div>
     <script src='https://code.jquery.com/jquery-2.2.4.min.js?v=1'></script>
     <script src="https://d.line-scdn.net/liff/1.0/sdk.js?v=1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clocklet@0.2.3"></script>
+    <script>/* `window.clocklet` object is available */</script>
     <script src="script.js"></script>
   </body>
 </html>
