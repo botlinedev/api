@@ -12,7 +12,6 @@ window.onload = function (e) {
     }
   );
 };
-
 function send(data) {
   if (onPC) {
     let msg = data.text;
@@ -57,7 +56,7 @@ function sendFlex() {
   $("#imageVideo").val("");
   $("#datetime").val("");
   if (time !== '' && text !== '') {
-    message = '>AutoText ' + text + ' ' + time;
+    message = '>AutoText ' + text + '[[TIME]]' + time;
     log(message);
     send({ type: 'text', text: message })
   }
