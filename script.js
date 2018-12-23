@@ -65,11 +65,6 @@ function sendFlex() {
     log(message);
     send({ type: 'text', text: message })
   }
-  if (image !== '' && url == '') {
-    message = '>Image ' + image + ' ' + image;
-    log(message);
-    send({ type: 'text', text: message })
-  }
   if (time !== '' && image !== '' && url !== '') {
     message = '>AutoImage ' + image + ' ' + url + ' ' + time;
     log(message);
