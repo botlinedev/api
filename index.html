@@ -6,6 +6,8 @@
     <title>MENU | เมนู</title>
     <link href="style.css" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+    <link href="tpick-light-pop.css" rel="stylesheet">
+    <script src="tpick-pop.js"></script>
   </head>
   <body>
     <console><p>This is your console.</p></console>
@@ -39,7 +41,7 @@
         <div class="wrap-input" id="autoMsg">
           <p>ตั้งเวลา</p>
             <div class="date">
-              <input class="input form-control" id="datetimepicker4" type="text" name="Time" placeholder="คลิ๊กเพื่อตั้งเวลา">
+              <input class="input form-control" id="datetime" type="text" name="Time" placeholder="คลิ๊กเพื่อตั้งเวลา">
             </div>
         </div>
         <div class="wrap-input" id="groupInput">
@@ -101,10 +103,16 @@
         </div>
       </div>
     </div>
+    <div class="overlay">
+      <div class='modal' id='modal1'>
+        <div class='content'>
+        <h1 class='title'>ระบบส่งข้อความ</h1>
+        <a class='btnCheck close-modal' href="#">สำเร็จ</a>
+        </div>  
+      </div>  
+    </div>
     <script src='https://code.jquery.com/jquery-2.2.4.min.js?v=1'></script>
     <script src="https://d.line-scdn.net/liff/1.0/sdk.js?v=1"></script>
-    <script src="https://cdn.jsdelivr.net/npm/clocklet@0.2.3"></script>
-    <script>/* `window.clocklet` object is available */</script>
     <script src="script.js"></script>
   </body>
 </html>

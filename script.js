@@ -47,7 +47,7 @@ function sendFlex() {
   text = $("#text").val();
   video = $("#video").val();
   imageVideo =  $("#imageVideo").val();
-  group = $("#group").val();
+  time = $("#datetime").val();
   image = image.replace(" ","");
   url = url.replace(" ","");
   $("#image").val("");
@@ -55,34 +55,39 @@ function sendFlex() {
   $("#text").val("");
   $("#video").val("");
   $("#imageVideo").val("");
-  $("#group").val("");
-  if (text !== '') {
-    console.log('has text')
+  $("#datetime").val("");
+  if (time !== '' && text !== '') {
+    message = '>AutoText ' + text + ' ' + time;
+    log(message);
+    send({ type: 'text', text: message })
+  }
+  else if (text !== '') {
     message = '>Text ' + text;
     log(message);
     send({ type: 'text', text: message })
   }
   if (image !== '' && url == '') {
-    console.log('has image')
     message = '>Image ' + image + ' ' + image;
     log(message);
     send({ type: 'text', text: message })
   }
-  if (image !== '' && url !== '') {
-    console.log('has url')
+  if (time !== '' && image !== '' && url !== '') {
+    message = '>AutoImage ' + image + ' ' + url + ' ' + time;
+    log(message);
+    send({ type: 'text', text: message })
+  }
+  else if (image !== '' && url !== '') {
     message = '>Image ' + image + ' ' + url;
     log(message);
     send({ type: 'text', text: message })
   }
-  if (video !== '' && imageVideo !== ''){
-    console.log('has video')
-    message = '>Video ' + video + ' ' + imageVideo;
+  if (time !== '' && video !== '' && imageVideo !== '') {
+    message = '>AutoVideo ' + video + ' ' + imageVideo + ' ' + time;
     log(message);
     send({ type: 'text', text: message })
   }
-  if (group !== ''){
-    console.log('has video')
-    message = group;
+  else if (video !== '' && imageVideo !== '') {
+    message = '>Video ' + video + ' ' + imageVideo;
     log(message);
     send({ type: 'text', text: message })
   }
@@ -104,6 +109,7 @@ function btnText2() {
   closeBtn(false);
   addGroup(false);
   addAuto(true);
+  addText(true);
   setTitle("ออโต้ส่งข้อความ");
 }
 function btnImage() {
@@ -120,6 +126,7 @@ function btnImage2() {
   closeBtn(false);
   addGroup(false);
   addAuto(true);
+  addImage(true);
   setTitle("ออโต้ส่งรูปภาพ");
 }
 function btnVideo() {
@@ -233,12 +240,12 @@ $('.profile').click(() => {
   btnAll();
 });
 $('.submit').click(() => {
-  console.log("Hi");
   sendFlex();
+  openModal();
 });
 $('#text').on('keypress', function (e) {
   if(e.which === 13){
-    sendFlex();
+    //sendFlex();
   }
 });
 $("document").ready(function() {
@@ -278,4 +285,11 @@ $("document").ready(function() {
       });
     }
   });
+  tpick.attach("datetime");
 });
+function openModal() {
+  $(".overlay").css("display", "flex");
+  setTimeout( function(){ 
+    $(".overlay").css("display", "none");
+  }, 1350);
+}

@@ -95,7 +95,6 @@ a:hover, a:focus {
     position: relative;
     width: 90%;
     margin-top: 20px;
-    z-index: 1;
 }
 .input {
     font-family: Poppins-Medium;
@@ -331,4 +330,50 @@ textarea {
 }
 .imgur:active::before {
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
+}
+.overlay {
+    width: 100%;
+    min-height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.75);
+    pointer-events: none;
+    transition: 0.35s ease-in-out;
+    max-height: 100vh;
+    overflow-y: auto;
+    z-index: 2;
+}
+.overlay .modal {
+    background: white;
+    text-align: center;
+    padding: 40px 80px;
+    box-shadow: 0px 1px 10px rgba(255, 255, 255, 0.35);
+    pointer-events: none;
+    transition: 0.35s ease-in-out;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+.overlay .modal .content {
+    transform: translate(0, -10px);
+    transition: .35s ease-in-out;
+    opacity: 1;
+}
+.overlay .modal .title {
+    margin-top: 0;
+}
+.btnCheck {
+    padding: 20px 30px;
+    display: inline-block;
+    background: rgb(35, 239, 62);
+    color: white;
+    text-decoration: none;
+    transition: 0.35s ease-in-out;
+    font-weight: 700;
+    margin-top: 30px;
 }
